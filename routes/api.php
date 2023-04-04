@@ -19,6 +19,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::group(['prefix' => '/v1'], function(){
+
 // Get all lessons
 Route::get('lessons', function(){
     return Lesson::all();
@@ -35,7 +37,7 @@ Route::post('lessons', function(Request $request){
 });
 
 // Update a lesson
-Route::put('lessons/{id}', function(Request $request, $id){
+Route::match(['put','patch'],'lessons/{id}', function(Request $request, $id){
     $lesson = Lesson::findOrfail($id);
     $lesson->update($request->all());
 
@@ -49,4 +51,11 @@ Route::delete('lessons/{id}', function($id){
     return 204;
 });
 
+// Route::any('lesson', function(){
+//     return "Please make sure to update your code to the newer version of our API. You should use lessons instead of lesson";
+// });
 
+Route::redirect('lesson', 'lessons');
+
+
+});
