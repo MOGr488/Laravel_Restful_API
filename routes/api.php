@@ -116,6 +116,42 @@ Route::group(['prefix' => '/v1'], function () {
         return 204;
     });
 
+
+    Route::get('users/{id}/lessons', function($id){
+        $user = User::find($id)->lessons;
+        return $user;
+    });
+
+    Route::get('lessons/{id}/tags', function($id){
+        $lesson = Lesson::find($id)->tags;
+        return $lesson;
+    });
+
+    Route::get('tags/{id}/lessons', function($id){
+        $tag = Tag::find($id)->lessons;
+        return $tag;
+    });
+
+    // في حالة تبغى تحط اسم حساب الشخص قبل الدومين
+    // Route::domain('{account}.myapp.com')->group(function(){
+    //     Route::get('user/{id}', function($account, $id){
+    //         //
+    //     });
+    // });
+
+    
+    //سلج تأخذ اسم الدرس وتحطه محترم بدل تكتب رقم
+    // Route::get('lessons/{lesson:slug}', function($lesson){
+    //     return $lesson;
+    // });
+
+    // اذا فشل الطلب شغل التالي 
+    // Route::fallback( function(){
+    //     //
+    // });
+
+
+    
 // To Warn the user
     // Route::any('lesson', function(){
     //     return "Please make sure to update your code to the newer version of our API. You should use lessons instead of lesson";
