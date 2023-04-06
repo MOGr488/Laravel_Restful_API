@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
@@ -17,7 +18,10 @@ class UserController extends Controller
      */
     public function index()
     {
-        return User::all();
+        $user = UserResource::collection(User::all());
+        return $user->response()
+                    ->setStatusCode(200, "Users Returned Successfully")
+                    ->header('Additional-Header', 'True');
     }
 
     /**
@@ -28,7 +32,10 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        return User::create($request->all());
+        $user = UserResource::collection(User::create($request->all()));
+        return $user->response()
+                    ->setStatusCode(200, "User Stored Successfully");
+
     }
 
     /**
@@ -39,7 +46,11 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        return User::findorFail($id);
+        $user = new UserResource(User::findOrFail($id));
+        return $user->response()
+                    ->setStatusCode(200, "User Returned Successfully")
+                    ->header('Additional-Header', 'True');
+    
     }
 
     /**
@@ -51,10 +62,11 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = User::findOrfail($id);
+        $user = UserResource::collection(User::findOrfail($id));
         $user->update($request->all());
 
-        return $user;
+        return $user->response()
+                    ->setStatusCode(200, "User Updated Successfully");
     }
 
     /**
