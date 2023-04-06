@@ -6,24 +6,34 @@ use App\Models\User;
 use App\Models\Lesson;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
 
 class RelationshipController extends Controller
 {
     public function userLessons($id)
     {
-        $user = User::find($id)->lessons;
-        return $user;
+        $user = User::findOrFail($id)->lessons;
+        
+        return Response::json([
+            'data' => $user->toArray()
+        ], 200);
     }
 
     public function lessonTags($id)
     {
-        $lesson = Lesson::find($id)->tags;
-        return $lesson;
+        $lesson = Lesson::findOrFail($id)->tags;
+
+        return Response::json([
+            'data' => $lesson->toArray()
+        ], 200);
     }
 
     public function tagLessons($id)
     {
-        $tag = Tag::find($id)->lessons;
-        return $tag;
+        $tag = Tag::findOrFail($id)->lessons;
+
+        return Response::json([
+            'data' => $tag->toArray()
+        ], 200);
     }
 }

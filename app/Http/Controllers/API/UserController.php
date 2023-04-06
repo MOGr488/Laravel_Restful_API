@@ -4,7 +4,9 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
 
 class UserController extends Controller
 {
@@ -37,7 +39,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        return User::find($id);
+        return User::findorFail($id);
     }
 
     /**
@@ -63,7 +65,7 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        User::find($id)->delete();
-        return 204;
+        User::findOrFail($id)->delete();
+        return response()->noContent();
     }
 }
