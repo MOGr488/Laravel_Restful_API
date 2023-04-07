@@ -9,6 +9,17 @@ use Illuminate\Http\Request;
 
 class LessonController extends Controller
 {
+
+    /**
+     * Initaiate a new controller instance.
+     * 
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth.basic.once')->except(['index', 'show']);
+    }
+
     /**
      * Display a listing of the resource.
      *

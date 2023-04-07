@@ -49,7 +49,7 @@ class UserController extends Controller
                 'password' => Hash::make($request->password)
             ]
         ));
-        return $user->response()->dd($request)
+        return $user->response()
                     ->setStatusCode(200, "User Stored Successfully");
 
     }
