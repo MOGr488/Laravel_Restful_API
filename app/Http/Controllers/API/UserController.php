@@ -2,15 +2,25 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Models\User;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
-use App\Models\User;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+    /**
+     * Initaiate a new controller instance.
+     * 
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth.basic.once')->except(['index', 'show']);
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -32,8 +42,14 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $user = UserResource::collection(User::create($request->all()));
-        return $user->response()
+        $user =new UserResource(User::create(
+            [
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password)
+            ]
+        ));
+        return $user->response()->dd($request)
                     ->setStatusCode(200, "User Stored Successfully");
 
     }

@@ -5,7 +5,6 @@ use App\Models\Tag;
 use App\Models\User;
 use App\Models\Lesson;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 
 class RelationshipController extends Controller
