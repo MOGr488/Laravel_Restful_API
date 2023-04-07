@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\LessonController;
+use App\Http\Controllers\API\LoginController;
 use App\Http\Controllers\API\RelationshipController;
 use App\Http\Controllers\API\TagController;
 use App\Http\Controllers\API\UserController;
@@ -26,10 +27,10 @@ use Illuminate\Support\Facades\Response;
 
 Route::group(['prefix' => '/v1'], function () {
 
-Route::apiResource('lessons', LessonController::class);
-Route::apiResource('users', UserController::class);
-Route::apiResource('tags', TagController::class);
-    
+    Route::apiResource('lessons', LessonController::class);
+    Route::apiResource('users', UserController::class);
+    Route::apiResource('tags', TagController::class);
+
 
 
     Route::get('users/{id}/lessons', [RelationshipController::class, 'userLessons']);
@@ -38,8 +39,10 @@ Route::apiResource('tags', TagController::class);
 
     Route::get('tags/{id}/lessons', [RelationshipController::class, 'tagLessons']);
 
+    Route::get('/login', [LoginController::class, 'login'])->name('login');
+
     //To Warn the user
-    Route::any('lesson', function(){
+    Route::any('lesson', function () {
         $message = 'Please make sure to update your code to the newer version of our API. You should use lessons instead of lesson';
 
         return Response::json($message, 404);
@@ -67,6 +70,3 @@ Route::apiResource('tags', TagController::class);
     // Route::fallback( function(){
     //     //
     // });
-
-
-

@@ -16,7 +16,7 @@ class TagController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth.basic.once')->except(['index', 'show']);
+        $this->middleware('auth:api')->except(['index', 'show']);
     }
 
 
@@ -74,7 +74,7 @@ class TagController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $tag = TagResource::collection(Tag::findOrfail($id));
+        $tag =new TagResource(Tag::findOrFail($id));
         $tag->update($request->all());
 
         return $tag->response()

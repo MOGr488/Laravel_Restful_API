@@ -17,7 +17,7 @@ class UserController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth.basic.once')->except(['index', 'show']);
+        $this->middleware('auth:api')->except(['index', 'show']);
     }
 
 
@@ -78,7 +78,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = UserResource::collection(User::findOrfail($id));
+        $user =new UserResource(User::findOrFail($id));
         $user->update($request->all());
 
         return $user->response()
