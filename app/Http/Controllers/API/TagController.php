@@ -44,6 +44,8 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('create', Tag::class);
+
         $tag = TagResource::collection( Tag::create($request->all()));
         return $tag->response()
         ->setStatusCode(200, "Tag Stored Successfully");
@@ -73,7 +75,12 @@ class TagController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
+    {   
+        $idtag = Tag::findOrFail($id);
+        $this->authorize('update', $idtag);
+        
+
+
         $tag =new TagResource(Tag::findOrFail($id));
         $tag->update($request->all());
 
@@ -89,6 +96,9 @@ class TagController extends Controller
      */
     public function destroy($id)
     {
+        $idtag= Tag::findOrFail($id);
+        $this->authorize('delete', $idtag);
+        
         Tag::findOrFail($id)->delete();
         return 204;
     }

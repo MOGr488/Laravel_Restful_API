@@ -42,6 +42,8 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+
+        $this->authorize('create', User::class);
         $user =new UserResource(User::create(
             [
                 'name' => $request->name,
@@ -78,6 +80,9 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $iduser = User::findOrFail($id);
+        $this->authorize('update', $iduser);
+
         $user =new UserResource(User::findOrFail($id));
         $user->update($request->all());
 
@@ -93,6 +98,9 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
+        $user = User::findOrFail($id);
+        $this->authorize('delete', $user);
+
         User::findOrFail($id)->delete();
         return response()->noContent();
     }
