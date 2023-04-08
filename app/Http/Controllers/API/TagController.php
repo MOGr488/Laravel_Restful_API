@@ -27,9 +27,11 @@ class TagController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $tag = TagResource::collection( Tag::all());
+        $limit = $request->input('limit') <= 50 ? $request->input('limit') : 15;
+
+        $tag = TagResource::collection( Tag::paginate($limit));
         return $tag->response()
                     ->setStatusCode(200, "Tags Returned Successfully")
                     ->header('Additional-Header', 'True');
@@ -98,7 +100,7 @@ class TagController extends Controller
     {
         $idtag= Tag::findOrFail($id);
         $this->authorize('delete', $idtag);
-        
+
         Tag::findOrFail($id)->delete();
         return 204;
     }

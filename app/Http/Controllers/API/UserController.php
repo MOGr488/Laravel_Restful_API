@@ -26,9 +26,10 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $user = UserResource::collection(User::all());
+        $limit = $request->input('limit') <= 50 ? $request->input('limit') : 15;
+        $user = UserResource::collection(User::paginate($limit));
         return $user->response()
                     ->setStatusCode(200, "Users Returned Successfully")
                     ->header('Additional-Header', 'True');
