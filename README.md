@@ -1,66 +1,153 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Laravel Restful API
+There is two branches
+- [Main Branch](https://github.com/MOGr488/Laravel_Restful_API/tree/master): includes basic API functions.
+- [Passport Branch](https://github.com/MOGr488/Laravel_Restful_API/tree/passport): adds API security using Passport.
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Project description
+In this project I learnt how to provide a RESTful API with a wide range of functionalities, including route setup, data handling, error handling, and user authentication and authorization. It utilizes Resource Controllers to improve API routes and provides data pagination for handling large amounts of data. The API also supports task scheduling and event handling.
+- RESTful API interface
+- API route setup
+- Controlling API route versions
+- API route setup for related data
+- Improved API routes with Resource Controllers
+- Handling errors
+- Filtering and sorting data
+- User authentication and authorization
+- Authentication using the OAuth2 protocol and Passport package
+- Controlling user permissions and authorizations
+- Data pagination
+- Task scheduling
+- Events
 
-## About Laravel
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+# Table of Contents
+- [Laravel Restful API](#laravel-restful-api)
+  - [Project description](#project-description)
+  - [Installation](#installation)
+- [Routes](#routes)
+  - [User Routes](#user-routes)
+  - [Lesson Routes](#lesson-routes)
+  - [Tag Routes](#tag-routes)
+  - [Relationship Route](#relationship-route)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-## Learning Laravel
+1. Introduction
+- Main Branch vs Passport Branch
+Project Description
+Installation
+Prerequisites
+Clone the Repository
+Set Environment Variables
+Run Database Migrations
+Start the Development Server
+Testing the APIs
+Routes
+User Routes
+Lesson Routes
+Tag Routes
+Relationship Routes
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-## Laravel Sponsors
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
 
-### Premium Partners
+## Installation
+Prerequisites
+- PHP 8.0-8.2
+- MySQL
+- Composer
+- Laragon or XAMP 
+- Postman
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+Step 1: Clone the repository
 
-## Contributing
+Clone the repository to your local machine using Git:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+`git clone https://github.com/MOGr488/Laravel_Restful_API.git`
 
-## Code of Conduct
+Step 2
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Copy the .env.example file and rename it to .env. Then, set the necessary environment variables, such as database connection details, app key.
 
-## Security Vulnerabilities
+`cp .env.example .env`
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Generate a new app key using the following command:
 
-## License
+`php artisan key:generate`
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+ 
+Step 3: Run Database Migrations
+Run the following command to create the necessary tables in your database:
+
+`php artisan migrate`
+
+
+Step 4: Start the Development Server
+Run the following command to start the development server:
+
+`php artisan serve`
+
+
+Step 5: Testing the APIs
+
+Open your browser and go to `http://localhost:8000`. You should see the Laravel welcome page.
+To test the APIs, you can use a tool like Postman or any other REST client.
+That's it! You now have the Laravel Rest API with Passport project up and running on your local machine.
+
+![image](https://user-images.githubusercontent.com/86527969/230791998-f15b8e27-5f17-43df-a43c-b6c0537461af.png)
+
+
+
+
+# Routes 
+
+### User Routes:
+
+- `GET /api/v1/users`: get all users
+- `POST /api/v1/users`: create a new user
+- `GET /api/v1/users/{user}`: get a specific user by ID
+- `PUT/PATCH /api/v1/users/{user}`: update a specific user by ID
+- `DELETE /api/v1/users/{user}`: delete a specific user by ID
+- `GET /api/v1/users/{id}/lessons`: get all lessons of a specific user by user ID
+
+### Lesson Routes:
+
+- `GET /api/v1/lessons`: get all lessons
+- `POST /api/v1/lessons`: create a new lesson
+- `GET /api/v1/lessons/{lesson}`: get a specific lesson by ID
+- `PUT/PATCH /api/v1/lessons/{lesson}`: update a specific lesson by ID
+- `DELETE /api/v1/lessons/{lesson}`: delete a specific lesson by ID
+- `GET /api/v1/lessons/{id}/tags`: get all tags of a specific lesson by lesson ID
+
+### Tag Routes:
+
+- `GET /api/v1/tags`: get all tags
+- `POST /api/v1/tags`: create a new tag
+- `GET /api/v1/tags/{tag}`: get a specific tag by ID
+- `PUT/PATCH /api/v1/tags/{tag}`: update a specific tag by ID
+- `DELETE /api/v1/tags/{tag}`: delete a specific tag by ID
+- `GET /api/v1/tags/{id}/lessons`: get all lessons of a specific tag by tag ID
+
+
+### Relationship Route 
+
+`GET|HEAD api/v1/lessons/{id}/tags`:
+
+This route is used to fetch all the tags associated with a specific lesson.
+The {id} parameter is the ID of the lesson whose tags are to be fetched.
+
+`GET|HEAD api/v1/tags/{id}/lessons`:
+
+This route is used to fetch all the lessons associated with a specific tag.
+The {id} parameter is the ID of the tag whose lessons are to be fetched.
+
+`GET|HEAD api/v1/users/{id}/lessons`:
+
+This route is used to fetch all the lessons associated with a specific user.
+The {id} parameter is the ID of the user whose lessons are to be fetched.
+
+
+Note : This project was done using Hsoub course (They use the old laravel 5.5) and my personal research. 
