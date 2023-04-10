@@ -1,5 +1,5 @@
 # Laravel Restful API
-There is two branches
+There are two branches
 - [Main Branch](https://github.com/MOGr488/Laravel_Restful_API/tree/master): includes basic API functions.
 - [Passport Branch](https://github.com/MOGr488/Laravel_Restful_API/tree/passport): adds API security using Passport.
 
